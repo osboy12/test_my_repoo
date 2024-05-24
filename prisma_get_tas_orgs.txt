@@ -1,0 +1,11 @@
+SELECT 
+    CASE 
+        WHEN CHARINDEX('tas-org-name:', YourColumn) > 0 THEN 
+            SUBSTRING(
+                YourColumn,
+                CHARINDEX('tas-org-name:', YourColumn) + LEN('tas-org-name:'),
+                CHARINDEX(';', YourColumn + ';', CHARINDEX('tas-org-name:', YourColumn)) - CHARINDEX('tas-org-name:', YourColumn) - LEN('tas-org-name:') 
+            )
+        ELSE NULL 
+    END AS TasOrgName
+FROM YourTable;
